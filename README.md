@@ -1,1 +1,2 @@
-# GitHub-Users
+GitHub User Search App
+---
