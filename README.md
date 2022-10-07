@@ -1,7 +1,7 @@
 GitHub User Search App
 ---
-GitHub User Search App is application made for getting all information about GitHub users.
-Search is used to get information about one user. User of the application needs to type username to retreive data about one specific user. If user is not found, user will get an error message.
+GitHub User Search App is an application made for getting all information about GitHub users.
+Search is used to get information about one user. The user of the application needs to type a username to retreive data about one specific user. If the user is not found, an error message will occur.
 
 
 ## App is built with:
