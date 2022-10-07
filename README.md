@@ -4,7 +4,7 @@ GitHub User Search App is an application made for getting all information about 
 Search is used to get information about one user. The user of the application needs to type a username to retreive data about one specific user. If the user is not found, an error message will occur.
 
 
-## App is built with:
+## The app is built using:
 - Semantic HTML5 elements
 - CSS
 - Flexbox
