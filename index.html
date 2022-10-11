@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Users App</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <h1 class="header__heading">GitHub Users</h1>
+        <p class="header__description">Find Users</p>
+    </header>
+    <main class="main">
+        <div class="main__wrapper">
+            <section class="search">
+                <h2 class="search__title">Find User</h2>
+                <div class="search__container">
+                    <input type="text" placeholder="Enter username">
+                    <button type="button"><img src="/Rectangle 3.png" alt="search user"></button>
+                </div>
+            </section>
+            <section class="results">
+                <h2 class="results__title">List All</h2>
+                <div id="results__container" class="results__container">
+                    <!-- <div class="results__card">
+                        <img class="results__img" alt="avatar" src="/avatar.png" width="64px" height="64px">
+                        <p class="results__username">Username</p>
+                        <img class="results__btn-more" onclick="getUser('mojombo')" alt="see more" src="/next.png" width="40px" height="40px">
+                    </div> -->
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="footer">
+        <p class="footer__description">This project is coded by <a href="https://github.com/KrisZivojevic" target="_blank">Kristina</a> and is <a href="https://github.com/KrisZivojevic/GitHub-Users" target="_blank">open-sourced</a> on GitHub</p>
+    </footer>
+    <script src="/js/index.js"></script>
+</body>
+</html>
