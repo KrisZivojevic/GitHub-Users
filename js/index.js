@@ -22,7 +22,7 @@ const getUsers = async () => {
             resultsCard.append(resultsUsername);
 
             let resultsMore = document.createElement('img');
-            resultsMore.src = '../next.png';
+            resultsMore.src = '../images/next.png';
             resultsMore.classList.add('results__btn-more');
             resultsMore.setAttribute('onclick', `getUser('${user.login}')`);
 
