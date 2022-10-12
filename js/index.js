@@ -43,7 +43,69 @@ const getUser = async (username) => {
         //fetch data
         const url = `https://api.github.com/users/${username}`;
         const response = await (await fetch(url)).json();
+        // console.log(response);
+        let resultsContainer = document.getElementById('results__container');
+        resultsContainer.innerHTML = '';
+
         console.log(response);
+
+        if (!response.login) {
+            resultsContainer.innerHTML = '<p>No results.</p>';
+        } else {
+            //Zapis koji lici na React
+
+        let userCard = document.createElement('div')
+        userCard.classList.add('user-card');
+        resultsContainer.append(userCard);
+
+        let userHeader = document.createElement('div');
+        userHeader.classList.add('user-card__header');
+        userCard.append(userHeader);
+
+        let userImg = document.createElement('img');
+        userImg.src = response.avatar_url;
+        userImg.classList.add('user-card__img');
+        userImg.setAttribute('alt', 'profile image');
+        userHeader.append(userImg);
+
+        let userInfo = document.createElement('div');
+        userInfo.classList.add('user-card__info');
+        userHeader.append(userInfo);
+
+        let userName = document.createElement('p');
+        userName.textContent = response.name;
+        userName.classList.add('user-card__name');
+        userInfo.append(userName);
+
+        let login = document.createElement('p');
+        login.textContent = response.login;
+        login.classList.add('user-card__login');
+        userInfo.append(login);
+        }
+
+        
+
+
+
+        //Kraci nacin za isto ako bi se pisao cist JS
+        // resultsContainer.innerHTML = `
+        // <div class="user-card">
+        //     <div class="user-card__header">
+        //         <img class="user-card__img" alt="profile image" src="${response.avatar_url}">
+        //         <div class="user-card__info">
+        //             <p class="user-card__name">${response.name}</p>
+        //             <p class="user-card__login">${response.login}</p>
+        //         </div>
+        //     </div>
+        // </div> 
+        // `;
+
+
+
+
+
+
+
     } catch (err) {
         console.log(err.toString());
     }
@@ -52,6 +114,26 @@ const getUser = async (username) => {
 (() => {
     getUsers();
 })()
+
+const searchBtn = document.querySelector('#search');
+const onSearch = () => {
+    console.log('click');
+    const username = document.getElementById('username');
+    console.log(username.value);
+    let resultsContainer = document.getElementById('results__container');
+    
+    if (username.value == '') {
+        resultsContainer.innerHTML = '';
+        getUsers();
+    } else {
+        //pretraga pojedinacnog korisnika
+        resultsContainer.innerHTML = '';
+        getUser(username.value);
+    }
+    
+
+}
+searchBtn.addEventListener('click', onSearch);
 
 
 /*<div class="results__card">
