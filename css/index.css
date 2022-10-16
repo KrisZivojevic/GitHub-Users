@@ -6,6 +6,7 @@
     /*colors*/
     --dark-blue: #001F54;
     --blue: #034078;
+    --light-blue: #469CEB;
     --grey: #353846;
     --white: #ffffff;
     --black: #000000;
@@ -123,6 +124,52 @@ table {
     width: 40px;
     height: 40px;
     cursor: pointer;
+}
+.user-card {
+    padding: 2rem;
+}
+.user-card__header {
+    display: flex;
+    gap: 50px;
+}
+.user-card__img {
+    border-radius: 50%;
+    width: 128px;
+    height: 128px;
+}
+.user-card__name {
+    font-size: 2rem;
+    font-weight: 200;
+}
+.user-card__login {
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 1rem 0;
+}
+.user-card__repositories {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.user-card__public-repos {
+    font-size: 24px;
+    font-weight: 100;
+    color: var(--blue);
+}
+.user-card__public-repos-num {
+    font-size: 40px;
+    font-weight: 400;
+    color: var(--light-blue);
+}
+.user-card__follow {
+    display: flex;
+    gap: 4rem;
+    padding: 2rem;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--blue);
+    border-bottom: 1px solid var(--black);
 }
 .footer {
     background-color: var(--grey);
