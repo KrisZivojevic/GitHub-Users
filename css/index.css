@@ -179,6 +179,9 @@ table {
     display: flex;
     margin-top: 2rem;
 }
+.user-card__body > div {
+    width: 50%;
+}
 .user-card__media {
     display: flex;
     gap: 1rem;
@@ -186,10 +189,11 @@ table {
     font-weight: 500;
     font-size: 14px;
     padding-bottom: 1rem;
+    padding-left: 1rem;
     align-items: center;
 }
 .user-card__media--modifier {
-    padding-right: 2rem;
+    padding-right: 1rem;
     border-right: 1px solid var(--black);
 }
 .user-card__media li {

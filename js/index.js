@@ -180,15 +180,70 @@ const getUser = async (username) => {
 
             let activeParagraph = document.createElement('p');
             let strDate = response.created_at;
-            let dateFormat = strDate.substring(0, 10);
+            let dateFormat = moment(strDate).format('D. MMMM YYYY');
             
             activeParagraph.textContent = `Active since ${dateFormat}`;
             active.append(activeParagraph);
 
+            let email = document.createElement('div');
+            email.classList.add('user-card__media');
+            userBodyRight.append(email);
+
+            let emailImg = document.createElement('img');
+            emailImg.src = '../images/email.png';
+            emailImg.setAttribute = ('alt', 'email');
+            email.append(emailImg);
+
+            let emailParagraph = document.createElement('p');
+            if (!response.email) {
+                emailParagraph.classList.add('empty-content');
+                emailParagraph.textContent = 'No Email';
+            } else {
+                emailParagraph.textContent = response.email;
+            }
+            email.append(emailParagraph);
+
+            let location = document.createElement('div');
+            location.classList.add('user-card__media');
+            userBodyRight.append(location);
+
+            let locationImg = document.createElement('img');
+            locationImg.src = '../images/location.png';
+            locationImg.setAttribute = ('alt', 'location');
+            location.append(locationImg);
+
+            let locationParagraph = document.createElement('p');
+            if (!response.location) {
+                locationParagraph.classList.add('empty-content');
+                locationParagraph.textContent = 'No location';
+            } else {
+                locationParagraph.textContent = response.location;
+            }
+            location.append(locationParagraph);
+
+            let blog = document.createElement('div');
+            blog.classList.add('user-card__media');
+            userBodyRight.append(blog);
+
+            let blogImg = document.createElement('img');
+            blogImg.src = '../images/blog.png';
+            blogImg.setAttribute = ('alt', 'blog');
+            blog.append(blogImg);
+
+            let blogParagraph = document.createElement('p');
+            if (!response.blog) {
+                blogParagraph.classList.add('empty-content');
+                blogParagraph.textContent = 'No blog';
+            } else {
+                blogParagraph.textContent = response.blog;
+            }
+            blog.append(blogParagraph);
 
 
 
-            };
+
+
+        };
 
 
             
