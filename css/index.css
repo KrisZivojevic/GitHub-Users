@@ -8,6 +8,7 @@
     --blue: #034078;
     --light-blue: #469CEB;
     --grey: #353846;
+    --light-grey: #bdb8b8;
     --white: #ffffff;
     --black: #000000;
     --link-color: #66A4DD;
@@ -94,9 +95,10 @@ table {
     border: none;
     border-radius: 50%;
     vertical-align: middle;
-}
-.search__container img {
     width: 2.5rem;
+    height: 2.5rem;
+    background-image: url('../images/Rectangle\ 3.png');
+    background-size: 2.5rem;
 }
 .search__result-all h3 {
     font-weight: 500;
@@ -127,6 +129,8 @@ table {
 }
 .user-card {
     padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--grey);
 }
 .user-card__header {
     display: flex;
@@ -170,6 +174,29 @@ table {
     font-weight: 600;
     color: var(--blue);
     border-bottom: 1px solid var(--black);
+}
+.user-card__body {
+    display: flex;
+    margin-top: 2rem;
+}
+.user-card__media {
+    display: flex;
+    gap: 1rem;
+    color: var(--blue);
+    font-weight: 500;
+    font-size: 14px;
+    padding-bottom: 1rem;
+    align-items: center;
+}
+.user-card__media--modifier {
+    padding-right: 2rem;
+    border-right: 1px solid var(--black);
+}
+.user-card__media li {
+    padding: 2px 0;
+}
+.empty-content {
+    color: var(--light-grey);
 }
 .footer {
     background-color: var(--grey);

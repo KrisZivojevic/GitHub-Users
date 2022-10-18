@@ -108,11 +108,94 @@ const getUser = async (username) => {
             following.textContent = `${response.following} Following`;
             followDiv.append(following);
 
+            let userBody = document.createElement('div');
+            userBody.classList.add('user-card__body');
+            userCard.append(userBody);
+
+            let userBodyLeft = document.createElement('div');
+            userBody.append(userBodyLeft);
+
+            let userBodyRight = document.createElement('div');
+            userBody.append(userBodyRight);
+
+            let company = document.createElement('div');
+            company.classList.add('user-card__media', 'user-card__media--modifier');
+            userBodyLeft.append(company);
+
+            let companyImg = document.createElement('img');
+            companyImg.src = '../images/company.png';
+            companyImg.setAttribute = ('alt', 'company')
+            company.append(companyImg);
+
             
+            
+            let companies = response.company;
+
+            if (!companies) {
+                let noCompany = document.createElement('p');
+                noCompany.classList.add('empty-content');
+                noCompany.textContent = 'No company listed';
+                company.append(noCompany);
+            } else {
+                let companyUl = document.createElement('ul');
+                company.append(companyUl);
+
+                let singleCompanies = companies.split(',');
+                console.log('split: ', singleCompanies);
+
+                singleCompanies.map(item => {
+                let companyName = document.createElement('li');
+                companyName.textContent = item.trim();
+                companyUl.append(companyName);
+                })
+            }
+            
+
+            let bio = document.createElement('div');
+            bio.classList.add('user-card__media', 'user-card__media--modifier');
+            userBodyLeft.append(bio);
+
+            let bioImg = document.createElement('img');
+            bioImg.src = '../images/bio.png';
+            bioImg.setAttribute = ('alt', 'bio')
+            bio.append(bioImg);
+
+            let bioParagraph = document.createElement('p');
+            if (!response.bio) {
+                bioParagraph.classList.add('empty-content');
+                bioParagraph.textContent = 'No Bio';
+            } else {
+                bioParagraph.textContent = response.bio;
+            }
+            bio.append(bioParagraph);
+            
+            let active = document.createElement('div');
+            active.classList.add('user-card__media', 'user-card__media--modifier');
+            userBodyLeft.append(active);
+
+            let activeImg = document.createElement('img');
+            activeImg.src = '../images/active.png';
+            activeImg.setAttribute = ('alt', 'active')
+            active.append(activeImg);
+
+            let activeParagraph = document.createElement('p');
+            let strDate = response.created_at;
+            let dateFormat = strDate.substring(0, 10);
+            
+            activeParagraph.textContent = `Active since ${dateFormat}`;
+            active.append(activeParagraph);
+
+
+
+
+            };
+
 
             
 
-        }
+            
+
+        
 
         
 
