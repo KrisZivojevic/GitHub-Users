@@ -44,10 +44,9 @@ const getUser = async (username) => {
         const url = `https://api.github.com/users/${username}`;
         const response = await (await fetch(url)).json();
         console.log(response);
+        
         let resultsContainer = document.getElementById('results__container');
         resultsContainer.innerHTML = '';
-
-        console.log(response);
 
         if (!response.login) {
             resultsContainer.innerHTML = '<p>No results.</p>';
@@ -123,7 +122,7 @@ const getUser = async (username) => {
             userBodyLeft.append(company);
 
             let companyImg = document.createElement('img');
-            companyImg.src = '../images/company.png';
+            companyImg.src = './images/company.png';
             companyImg.setAttribute = ('alt', 'company')
             company.append(companyImg);
 
@@ -134,7 +133,7 @@ const getUser = async (username) => {
             if (!companies) {
                 let noCompany = document.createElement('p');
                 noCompany.classList.add('empty-content');
-                noCompany.textContent = 'No company listed';
+                noCompany.textContent = 'No company';
                 company.append(noCompany);
             } else {
                 let companyUl = document.createElement('ul');
@@ -144,9 +143,9 @@ const getUser = async (username) => {
                 console.log('split: ', singleCompanies);
 
                 singleCompanies.map(item => {
-                let companyName = document.createElement('li');
-                companyName.textContent = item.trim();
-                companyUl.append(companyName);
+                    let companyName = document.createElement('li');
+                    companyName.textContent = item.trim();
+                    companyUl.append(companyName);
                 })
             }
             
@@ -156,7 +155,7 @@ const getUser = async (username) => {
             userBodyLeft.append(bio);
 
             let bioImg = document.createElement('img');
-            bioImg.src = '../images/bio.png';
+            bioImg.src = './images/bio.png';
             bioImg.setAttribute = ('alt', 'bio')
             bio.append(bioImg);
 
@@ -174,7 +173,7 @@ const getUser = async (username) => {
             userBodyLeft.append(active);
 
             let activeImg = document.createElement('img');
-            activeImg.src = '../images/active.png';
+            activeImg.src = './images/active.png';
             activeImg.setAttribute = ('alt', 'active')
             active.append(activeImg);
 
@@ -190,7 +189,7 @@ const getUser = async (username) => {
             userBodyRight.append(email);
 
             let emailImg = document.createElement('img');
-            emailImg.src = '../images/email.png';
+            emailImg.src = './images/email.png';
             emailImg.setAttribute = ('alt', 'email');
             email.append(emailImg);
 
@@ -208,7 +207,7 @@ const getUser = async (username) => {
             userBodyRight.append(location);
 
             let locationImg = document.createElement('img');
-            locationImg.src = '../images/location.png';
+            locationImg.src = './images/location.png';
             locationImg.setAttribute = ('alt', 'location');
             location.append(locationImg);
 
@@ -226,7 +225,7 @@ const getUser = async (username) => {
             userBodyRight.append(blog);
 
             let blogImg = document.createElement('img');
-            blogImg.src = '../images/blog.png';
+            blogImg.src = './images/blog.png';
             blogImg.setAttribute = ('alt', 'blog');
             blog.append(blogImg);
 
@@ -303,6 +302,9 @@ const onSearch = () => {
 
 }
 searchBtn.addEventListener('click', onSearch);
+
+const refreshBtn = document.getElementById('refresh');
+refreshBtn.addEventListener('click', onSearch);
 
 
 /*<div class="results__card">

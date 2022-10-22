@@ -73,7 +73,7 @@ table {
     background-color: var(--white);
     border-radius: 1rem;
     margin: auto;
-    padding: 50px 100px 0;
+    padding: 50px 100px;
 }
 .search__title {
     margin-bottom: 16px;
@@ -92,6 +92,7 @@ table {
 .search__container button {
     margin: 0;
     padding: 0;
+    cursor: pointer;
     border: none;
     border-radius: 50%;
     vertical-align: middle;
@@ -104,9 +105,19 @@ table {
     font-weight: 500;
     margin: 10px 0;
 }
+.results__wrapper {
+    display: flex;
+    justify-content: space-between;
+}
 .results__title {
     font-weight: 500;
     margin: 10px 0;
+}
+.results__refresh-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
 }
 .results__card {
     display: flex;
@@ -145,7 +156,7 @@ table {
     font-size: 2rem;
     font-weight: 200;
 }
-.user-card__login {
+.user-card__login, .user-card__username {
     font-size: 2rem;
     font-weight: 600;
     padding: 1rem 0;
@@ -159,6 +170,7 @@ table {
     font-size: 24px;
     font-weight: 100;
     color: var(--blue);
+    flex-basis: 30%;
 }
 .user-card__public-repos-num {
     font-size: 40px;
