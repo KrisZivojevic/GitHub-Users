@@ -79,8 +79,13 @@ table {
     margin-bottom: 16px;
     font-weight: 500;
 }
+.search__container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
 .search__container input {
-    width: 80%;
+    flex-grow: 2;
     border-radius: 1.5rem;
     border: 1px solid var(--grey);
     padding: 0.5rem 1rem;
@@ -107,7 +112,9 @@ table {
 }
 .results__wrapper {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
 }
 .results__title {
     font-weight: 500;

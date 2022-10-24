@@ -1,3 +1,13 @@
+/**
+ *           ZADATAK za 24.10.2022.
+ * 
+ *      1. Napraviti template za user details [x]
+ *      2. Ispisati user details sa svim dinamickim informacijama []
+ *      3. Napraviti template za user unutar list all users prikaza [x]
+ *      4. Ispisati user template sa dinamickim informacijama pomocu insertAdjastHtml [x]
+ * 
+ */
+
 const getUsers = async () => {
     try {
         //fetch data
@@ -5,11 +15,29 @@ const getUsers = async () => {
         const response = await (await fetch(url)).json();
 
         let resultsContainer = document.getElementById('results__container');
-        response.map(user => {
-            // console.log(user);
+        resultsContainer.innerHTML = '';
 
+        const resultsLabel = document.querySelector('p.results__title');
+
+        if (resultsLabel) {
+            resultsLabel.remove();
+        }
+        response.forEach(user => {
+
+            const avatar = user.avatar_url;
+            const username = user.login;
+            const userTemplate = `
+                <div class="results__card">
+                    <img class="results__img" alt="avatar" src="${avatar}" width="64px" height="64px">
+                    <p class="results__username">${username}</p>
+                    <img class="results__btn-more" onclick="getUser('${username}')" alt="see more" src="../images/next.png" width="40px" height="40px">
+                </div>
+            `;
+
+            resultsContainer.insertAdjacentHTML('beforeend', userTemplate);
         })
-        
+
+
 
     } catch (err) {
         console.log(err.toString());
@@ -20,124 +48,109 @@ const getUsers = async () => {
     getUsers();
 })()
 
+// pomocna funkcija
+const formatCompanies = (companiesString) => {
+    let strToArr = companiesString.split(',');
+    return strToArr.map(company => `<li>${company.trim()}</li>`).join('')
+}
+
 const getUser = async (value) => {
     try {
         //fetch data
         const url = `https://api.github.com/users/${value}`;
         const response = await (await fetch(url)).json();
-        
-        const name = response.name ? response.name : 'No Name';
-        const username = response.login;
-        const repos = response.public_repos ? response.public_repos : '0';
-        const avatar = response.avatar_url;
-        const company = response.company ? response.company.split(',') : 'No company';
-        const biography = response.bio ? response.bio : 'No bio';
-        const dateCreated = response.created_at;
-        const date = moment(dateCreated).format('D. MMMM YYYY');
-        const email = response.email ? response.email : 'No email';
-        const location = response.location ? response.location : 'No location';
-        const blog = response.blog ? response.blog : 'No Blog';
+        const resultsContainer = document.getElementById('results__container');
 
-        const card = `
-            <div class="user-card">
-                <div class="user-card__header">
-                    <img class="user-card__img" alt="profile image" src="${avatar}">
-                    <div class="user-card__info">
-                        <p class="user-card__name">${name}</p>
-                        <p class="user-card__username">${username}</p>
-                        <div class="user-card__repositories">
-                        <span class="user-card__public-repos">Number of repositories</span>
-                        <p class="user-card__public-repos-num">${repos}</p>
+        if (response.message == 'Not Found') {
+            resultsContainer.insertAdjacentHTML('afterbegin', '<p>User not found</p>');
+        } else {
+            const name = response.name ? response.name : 'No Name';
+            const username = response.login;
+            const repos = response.public_repos ? response.public_repos : '0';
+            const avatar = response.avatar_url;
+            const followers = response.followers;
+            const following = response.following;
+            const companies = response.company ? formatCompanies(response.company) : '<p class="empty-content">No Company</p>';
+            const biography = response.bio ? `<p>${response.bio}</p>` : '<p class="empty-content">No Bio</p>';
+            const dateCreated = response.created_at;
+            const date = moment(dateCreated).format('D. MMMM YYYY');
+            const email = response.email ? `<p>${response.email}</p>` : '<p class="empty-content">No Email</p>';
+            const location = response.location ? `<p>${response.location}</p>` : '<p class="empty-content">No Location</p>';
+            const blog = response.blog ? `<p>${response.blog}</p>` : '<p class="empty-content">No Blog</p>';
+
+            const card = `
+                <div class="user-card">
+                    <div class="user-card__header">
+                        <img class="user-card__img" alt="profile image" src="${avatar}">
+                        <div class="user-card__info">
+                            <p class="user-card__name">${name}</p>
+                            <p class="user-card__username">${username}</p>
+                            <div class="user-card__repositories">
+                            <span class="user-card__public-repos">Number of repositories</span>
+                            <p class="user-card__public-repos-num">${repos}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="user-card__follow">
-                <p>23218 Followers</p>
-                <p>11 Following</p>
-            </div>
-            <div class="user-card__body">
-                <div>
-                    <div class="user-card__media user-card__media--modifier">
-                        <img src="./images/company.png">
-                            <ul>
-                                <li>@chatterbugapp</li>
-                                <li>@redwoodjs</li>
-                                <li>@preston-werner-ventures</li>
-                            </ul>
+                <div class="user-card__follow">
+                    <p>${followers} Followers</p>
+                    <p>${following} Following</p>
+                </div>
+                <div class="user-card__body">
+                    <div>
+                        <div class="user-card__media user-card__media--modifier">
+                            <img src="./images/company.png">
+                                <ul>
+                                    ${companies}
+                                </ul>
+                        </div>
+                        <div class="user-card__media user-card__media--modifier">
+                            <img src="./images/bio.png">
+                            ${biography}
+                        </div>
+                        <div class="user-card__media user-card__media--modifier">
+                            <img src="./images/active.png">
+                            <p>Active since ${date}</p>
+                        </div>
                     </div>
-                    <div class="user-card__media user-card__media--modifier">
-                        <img src="./images/bio.png">
-                        <p class="empty-content">No Bio</p>
-                    </div>
-                    <div class="user-card__media user-card__media--modifier">
-                        <img src="./images/active.png">
-                        <p>Active since 20. October 2007</p>
+
+                    <div>
+                        <div class="user-card__media">
+                            <img src="./images/email.png">
+                            ${email}
+                        </div>
+                        <div class="user-card__media">
+                            <img src="./images/location.png">
+                            ${location}
+                        </div>
+                        <div class="user-card__media">
+                            <img src="./images/blog.png">
+                            ${blog}
+                            </div>
+                        </div>
                     </div>
                 </div>
+            `;
+            const resultsLabel = document.querySelector('p.results__title');
 
-                <div>
-                    <div class="user-card__media">
-                        <img src="./images/email.png">
-                        <p class="empty-content">No Email</p>
-                    </div>
-                    <div class="user-card__media">
-                        <img src="./images/location.png">
-                        <p>San Francisco</p>
-                    </div>
-                    <div class="user-card__media">
-                        <img src="./images/blog.png">
-                        <p>http://tom.preston-werner.com</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        `
-        
-    document.getElementById('results__container').innerHTML = card;
+            if (!resultsLabel) {
+                resultsContainer.insertAdjacentHTML('beforebegin', '<p class="results__title">Results:</p>');
+            }
 
+            resultsContainer.innerHTML = '';
 
-            
-
-            
-
-        
-
-        
-
-
-
-        // Kraci nacin za isto ako bi se pisao cist JS
-        // resultsContainer.innerHTML = `
-        // <div class="user-card">
-        //     <div class="user-card__header">
-        //         <img class="user-card__img" alt="profile image" src="${response.avatar_url}">
-        //         <div class="user-card__info">
-        //             <p class="user-card__name">${response.name}</p>
-        //             <p class="user-card__login">${response.login}</p>
-        //         </div>
-        //     </div>
-        // </div> 
-        // `;
-
-
-
-
-
-
-
+            resultsContainer.insertAdjacentHTML('afterbegin', card);
+        }
     } catch (err) {
         console.log(err.toString());
     }
 }
 
 const searchBtn = document.querySelector('#search');
+const refreshBtn = document.getElementById('refresh');
 const onSearch = () => {
-    console.log('click');
     const username = document.getElementById('username');
-    console.log(username.value);
     let resultsContainer = document.getElementById('results__container');
-    
+
     if (username.value == '') {
         resultsContainer.innerHTML = '';
         getUsers();
@@ -146,7 +159,11 @@ const onSearch = () => {
         resultsContainer.innerHTML = '';
         getUser(username.value);
     }
-    
+
 
 }
+
 searchBtn.addEventListener('click', onSearch);
+refreshBtn.addEventListener('click', getUsers);
+
+
