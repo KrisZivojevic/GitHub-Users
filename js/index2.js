@@ -10,6 +10,7 @@
 
 const getUsers = async () => {
     try {
+        document.getElementById('username').value = '';
         //fetch data
         const url = 'https://api.github.com/users';
         const response = await (await fetch(url)).json();
@@ -30,7 +31,7 @@ const getUsers = async () => {
                 <div class="results__card">
                     <img class="results__img" alt="avatar" src="${avatar}" width="64px" height="64px">
                     <p class="results__username">${username}</p>
-                    <img class="results__btn-more" onclick="getUser('${username}')" alt="see more" src="../images/next.png" width="40px" height="40px">
+                    <img class="results__btn-more" onclick="getUser('${username}')" alt="see more" src="../images/next.svg" width="40px" height="40px">
                 </div>
             `;
 
@@ -51,7 +52,10 @@ const getUsers = async () => {
 // pomocna funkcija
 const formatCompanies = (companiesString) => {
     let strToArr = companiesString.split(',');
-    return strToArr.map(company => `<li>${company.trim()}</li>`).join('')
+    // console.log(strToArr);
+    // let newArr = strToArr.map(company => `<li>${company.trim()}</li>`).join('');
+    // console.log(newArr);
+    return strToArr.map(company => `<li>${company.trim()}</li>`).join('');
 }
 
 const getUser = async (value) => {
@@ -68,8 +72,8 @@ const getUser = async (value) => {
             const username = response.login;
             const repos = response.public_repos ? response.public_repos : '0';
             const avatar = response.avatar_url;
-            const followers = response.followers;
-            const following = response.following;
+            const followers = response.followers ? response.followers : '0';
+            const following = response.following ? response.following : '0';
             const companies = response.company ? formatCompanies(response.company) : '<p class="empty-content">No Company</p>';
             const biography = response.bio ? `<p>${response.bio}</p>` : '<p class="empty-content">No Bio</p>';
             const dateCreated = response.created_at;
@@ -80,6 +84,9 @@ const getUser = async (value) => {
 
             const card = `
                 <div class="user-card">
+                    
+                    <img src="./images/x_icon.svg" alt="" class="user-card__exit" id="exit" onclick="getUsers()">
+                    
                     <div class="user-card__header">
                         <img class="user-card__img" alt="profile image" src="${avatar}">
                         <div class="user-card__info">
@@ -98,32 +105,32 @@ const getUser = async (value) => {
                 <div class="user-card__body">
                     <div>
                         <div class="user-card__media user-card__media--modifier">
-                            <img src="./images/company.png">
+                            <img src="./images/company.svg">
                                 <ul>
                                     ${companies}
                                 </ul>
                         </div>
                         <div class="user-card__media user-card__media--modifier">
-                            <img src="./images/bio.png">
+                            <img src="./images/bio.svg">
                             ${biography}
                         </div>
                         <div class="user-card__media user-card__media--modifier">
-                            <img src="./images/active.png">
+                            <img src="./images/active.svg">
                             <p>Active since ${date}</p>
                         </div>
                     </div>
 
                     <div>
                         <div class="user-card__media">
-                            <img src="./images/email.png">
+                            <img src="./images/email.svg">
                             ${email}
                         </div>
                         <div class="user-card__media">
-                            <img src="./images/location.png">
+                            <img src="./images/location.svg">
                             ${location}
                         </div>
                         <div class="user-card__media">
-                            <img src="./images/blog.png">
+                            <img src="./images/blog.svg">
                             ${blog}
                             </div>
                         </div>
@@ -147,8 +154,9 @@ const getUser = async (value) => {
 
 const searchBtn = document.querySelector('#search');
 const refreshBtn = document.getElementById('refresh');
+const username = document.getElementById('username');
+
 const onSearch = () => {
-    const username = document.getElementById('username');
     let resultsContainer = document.getElementById('results__container');
 
     if (username.value == '') {
@@ -159,11 +167,14 @@ const onSearch = () => {
         resultsContainer.innerHTML = '';
         getUser(username.value);
     }
-
-
 }
+
+username.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        onSearch();
+    }
+});
+
 
 searchBtn.addEventListener('click', onSearch);
 refreshBtn.addEventListener('click', getUsers);
-
-
