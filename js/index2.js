@@ -20,7 +20,7 @@ const getUsers = async () => {
                 <div class="results__card">
                     <img class="results__img" alt="avatar" src="${avatar}" width="64px" height="64px">
                     <p class="results__username">${username}</p>
-                    <img class="results__btn-more" onclick="getUser('${username}')" alt="see more" src="../images/next.svg" width="40px" height="40px">
+                    <img class="results__btn-more" onclick="getUser('${username}')" alt="see more" src="./images/next.svg" width="40px" height="40px">
                 </div>
             `;
 
