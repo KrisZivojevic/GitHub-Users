@@ -1,17 +1,6 @@
-/**
- *           ZADATAK za 24.10.2022.
- * 
- *      1. Napraviti template za user details [x]
- *      2. Ispisati user details sa svim dinamickim informacijama []
- *      3. Napraviti template za user unutar list all users prikaza [x]
- *      4. Ispisati user template sa dinamickim informacijama pomocu insertAdjastHtml [x]
- * 
- */
-
 const getUsers = async () => {
     try {
         document.getElementById('username').value = '';
-        //fetch data
         const url = 'https://api.github.com/users';
         const response = await (await fetch(url)).json();
 
@@ -49,18 +38,15 @@ const getUsers = async () => {
     getUsers();
 })()
 
-// pomocna funkcija
+
 const formatCompanies = (companiesString) => {
     let strToArr = companiesString.split(',');
-    // console.log(strToArr);
-    // let newArr = strToArr.map(company => `<li>${company.trim()}</li>`).join('');
-    // console.log(newArr);
     return strToArr.map(company => `<li>${company.trim()}</li>`).join('');
 }
 
 const getUser = async (value) => {
     try {
-        //fetch data
+
         const url = `https://api.github.com/users/${value}`;
         const response = await (await fetch(url)).json();
         const resultsContainer = document.getElementById('results__container');
@@ -163,7 +149,6 @@ const onSearch = () => {
         resultsContainer.innerHTML = '';
         getUsers();
     } else {
-        //pretraga pojedinacnog korisnika
         resultsContainer.innerHTML = '';
         getUser(username.value);
     }

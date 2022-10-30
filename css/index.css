@@ -74,6 +74,9 @@ table {
     border-radius: 1rem;
     margin: 30px auto;
     padding: 50px 100px;
+    -webkit-box-shadow: 4px 4px 15px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 4px 15px 0px rgba(0,0,0,0.75);
+    box-shadow: 4px 4px 15px 0px rgba(0,0,0,0.75);
 }
 .search__title {
     margin-bottom: 16px;
