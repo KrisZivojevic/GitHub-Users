@@ -68,19 +68,27 @@ table {
     align-items: center;
 }
 .main__wrapper {
-    min-width: 70vh;
-    min-height: 70vh;
+    max-width: 800px;
+    min-width: 500px;
     background-color: var(--white);
     border-radius: 1rem;
-    margin: auto;
-    padding: 50px 100px 0;
+    margin: 30px auto;
+    padding: 50px 100px;
+    -webkit-box-shadow: 4px 4px 15px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 4px 15px 0px rgba(0,0,0,0.75);
+    box-shadow: 4px 4px 15px 0px rgba(0,0,0,0.75);
 }
 .search__title {
     margin-bottom: 16px;
     font-weight: 500;
 }
+.search__container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
 .search__container input {
-    width: 80%;
+    flex-grow: 2;
     border-radius: 1.5rem;
     border: 1px solid var(--grey);
     padding: 0.5rem 1rem;
@@ -92,30 +100,44 @@ table {
 .search__container button {
     margin: 0;
     padding: 0;
+    cursor: pointer;
     border: none;
     border-radius: 50%;
     vertical-align: middle;
     width: 2.5rem;
     height: 2.5rem;
-    background-image: url('../images/Rectangle\ 3.png');
+    background-image: url('../images/search.svg');
     background-size: 2.5rem;
 }
 .search__result-all h3 {
     font-weight: 500;
     margin: 10px 0;
 }
+.results__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
 .results__title {
     font-weight: 500;
     margin: 10px 0;
+}
+.results__refresh-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
 }
 .results__card {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 300px;
     border: 0.5px solid var(--black);
     border-radius: 1rem;
     padding: 1rem;
-    margin-bottom: 10px;
+    margin: 0 auto 10px;
 }
 .results__img {
     width: 64px;
@@ -128,9 +150,18 @@ table {
     cursor: pointer;
 }
 .user-card {
-    padding: 2rem;
+    padding: 2.5rem;
     border-radius: 1rem;
     border: 1px solid var(--grey);
+    position: relative;
+}
+.user-card__exit {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    cursor: pointer;
 }
 .user-card__header {
     display: flex;
@@ -145,7 +176,7 @@ table {
     font-size: 2rem;
     font-weight: 200;
 }
-.user-card__login {
+.user-card__login, .user-card__username {
     font-size: 2rem;
     font-weight: 600;
     padding: 1rem 0;
@@ -159,6 +190,7 @@ table {
     font-size: 24px;
     font-weight: 100;
     color: var(--blue);
+    flex-basis: 30%;
 }
 .user-card__public-repos-num {
     font-size: 40px;
@@ -213,4 +245,101 @@ table {
 .footer__description a {
     font-style: italic;
     color: var(--link-color);
+}
+
+@media only screen and (max-width: 992px) {
+    .main__wrapper {
+        margin: 30px;
+        padding: 50px 30px;
+    }
+    .search {
+        padding: 0 70px;
+    }
+    .results__wrapper {
+        padding: 0 70px;
+    }
+    .user-card__name, .user-card__username {
+        font-size: 24px;
+    }
+    .user-card__public-repos, .user-card__follow {
+        font-size: 20px;
+    }
+    .user-card__follow {
+        padding: 1rem;
+    }
+    .user-card__public-repos-num {
+        font-size: 34px;
+    }
+    .user-card__media {
+        padding-bottom: 0.5rem;
+    }
+}
+
+@media only screen and (max-width: 610px) {
+    .user-card__header {
+        gap: 20px;
+        flex-direction: column;
+        align-items: center;
+    }
+    .search {
+        padding: 0;
+    }
+    .results__wrapper {
+        padding: 0;
+    }
+    .user-card {
+        padding: 1rem;
+    }
+    .user-card__follow {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+    .user-card__repositories {
+        justify-content: center;
+    }
+    .user-card__info {
+        text-align: center;
+    }
+    .user-card__body {
+        flex-direction: column;
+        align-items: center;
+    }
+    .user-card__body > div {
+        width: 100%;
+    }
+    .user-card__media {
+        padding: 0;
+    }
+    .user-card__media--modifier {
+        border-right: none;
+    }
+    .main__wrapper {
+        min-width: 300px;
+        padding: 10px;
+    }
+    .user-card__img {
+        width: 100px;
+        height: 100px;
+    }
+    .user-card__name, .user-card__username {
+        font-size: 18px;
+    }
+    .user-card__username {
+        padding-top: 0;
+    }
+    .user-card__public-repos, .user-card__follow {
+        font-size: 18px;
+    }
+    .user-card__follow {
+        gap: 0.5rem;
+    }
+    .user-card__public-repos-num {
+        font-size: 24px;
+    }
+    .footer__description {
+        padding: 3rem;
+        font-size: 12px;
+    }
+
 }

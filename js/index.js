@@ -304,6 +304,9 @@ const onSearch = () => {
 }
 searchBtn.addEventListener('click', onSearch);
 
+const refreshBtn = document.getElementById('refresh');
+refreshBtn.addEventListener('click', onSearch);
+
 
 /*<div class="results__card">
     <img class="results__img" alt="avatar" src="/avatar.png" width="64px" height="64px">
