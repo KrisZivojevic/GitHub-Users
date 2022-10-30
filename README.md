@@ -13,3 +13,5 @@ Search is used to get information about one user. The user of the application ne
 - API
 
 ## Screenshot
+
+## DEMO: https://kriszivojevic.github.io/GitHub-Users/
